@@ -366,6 +366,9 @@ Add the virutal domains and hosts
 
         **********************************************************  HTTPS **************  instructions end
 
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    Adding all your vhost files in one location
+
     HTTP -- Instead of creating seperate conf files for each domain, you can add all http virtual hosts in one file i.e., 000-default.conf
     Simply copy the http virualhost conf mentiond above 
 
