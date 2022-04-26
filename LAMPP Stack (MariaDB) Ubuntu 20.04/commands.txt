@@ -1,11 +1,11 @@
 /**
  * Instructions :
+ * All the lines that have `$` sign infront are commands.
  * commands having `*` at start are mandatory commands to run.
  * All the commands should be ran in order and it is assumed that you have fresh installation of ubuntu 20.04
- * If you have done some setup or facing some issue, go to the respective section where you are having issue.
+ * If you have done some setup already or facing some issue, go to the respective section where you are having issue.
  * copy only the part after $ sign in every command.
  * Other commands are to check respective status of the respective installation.
- * All the lines that have `$` sign infront are commands.
  */
 
 //////////////////////////////////////////////////////////////////////
@@ -23,6 +23,7 @@ Some essential packages:
     * $ sudo apt-get install curl
     * $ sudo apt-get install unzip
     * $ sudo apt-get install rar
+    * $ sudo apt-get install git
 
 /////////////////////////////////////////////////////////////////////
 Installing Apache2 & some helpful commands:
@@ -45,17 +46,17 @@ Installing Apache2 & some helpful commands:
     
     Enabling allow override All globally for apache2 (to remove index.php from url's)
 
-        * $ cd /etc/apache2/
-        * $ sudo nano apache2.conf
+        * $ sudo nano /etc/apache2/apache2.conf
 
-        find text "AllowOverride, None" and change it to "AllowOverride, All"
-
+        (find the below text)
         Before changing:
             <Directory /var/www/>
                 Options Indexes FollowSymLinks
                 AllowOverride None
                 Require all granted
             </Directory>
+        
+        change "AllowOverride, None" and change it to "AllowOverride, All"
 
         After changing:
             <Directory /var/www/>
@@ -70,7 +71,7 @@ Installing Apache2 & some helpful commands:
         * $ sudo systemctl restart apache2
 
 
-    Making index.php as default to load in Apache
+    Making index.php as default file to be loaded in a folder by Apache2
 
         * $ sudo nano /etc/apache2/mods-enabled/dir.conf
 
@@ -80,7 +81,7 @@ Installing Apache2 & some helpful commands:
                 DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
         </IfModule>
 
-    Some helpful commands to check apache2
+    Some helpful commands to check apache2 status
 
         To know apache2 version
             $ apache2 -v
@@ -128,11 +129,11 @@ Installing mariadb and helpful commands:
 
     To completed MariaDB installation
 
-        When you run this command, it will ask for series of questions. simply enter as mentioned in below stpes
+        When you run this command, it will ask for series of questions. simply do as mentioned in below stpes
         * $ sudo mysql_secure_installation
 
             Steps:
-            1. Enter system root password
+            1. Press Enter and type system root password
             2. Type 'n' and press enter
             3. Type 'Y' and press enter
             4. Type 'Y' and press enter
@@ -202,11 +203,23 @@ Installing PHPmyadmin:
 
 /////////////////////////////////////////////////////////////////////
 Creating development local ssl certificates
+    Note this step is needed only if you want use https 
 
     * $ sudo a2enmod ssl
     * $ sudo systemctl restart apache2
     * $ sudo mkdir /etc/apache2/ssl
     * $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+
+    You can press enter without entering any details: (Optional)
+
+    You will be prompted to enter some details:
+    1. Country Name (2 letter code) [AU]: IN
+    2. State or Province Name (full name) [Some-State]: Karanataka
+    3. Locality Name (eg, city) []: Bangalore
+    4. Organization Name (eg, company) [Internet Widgits Pty Ltd]: Skills
+    5. Organizational Unit Name (eg, section) []: IT
+    6. Common Name (e.g. server FQDN or YOUR name) []: localhost
+    7. Email Address []: example@email.com
 
     Note:
         remember the path for your created ssl files i.e; 
@@ -219,28 +232,166 @@ Creating development local ssl certificates
 /////////////////////////////////////////////////////////////////////
 Add the virutal domains and hosts
 
+    Adding domains in your local system
+
+    * $ sudo nano /etc/hosts
+
+        Add the below text, which is your website link without any http or https
+
+        127.0.0.1       example.com
+        127.0.0.1       example.secure.com
+
     Note: 
     ******************
     Some basic info:
 
     1. You need to add your vhost files in folder `/etc/apache2/sites-available/`
-    2. For http based virutal hosts i.e., http://example.com, add you vhost configuration in `000-default.conf` file
-    3. For https based virutal hosts i.e., https://example.com, add you vhost configuration in `default-ssl.conf` file
-    4. You can create seperate vhost conf files each domain, if you want.
+    2. (Step 1)For http based virutal hosts i.e., http://example.com, add you vhost configuration in `000-default.conf` file (provided by apache2)
+    3. (Step 2)For https based virutal hosts i.e., https://example.com, add you vhost configuration in `default-ssl.conf` file (provided by apache2)
+    4. You can create seperate vhost conf files for each domain, if you want.
+    5. After every change to virtualhost conf file you need enable it and relaod or restart apache
 
     ******************
 
-    Adding domains
+    Adding virtual hosts
 
-    $ sudo nano /etc/hosts
+        Step 1  ***********  HTTP ************** instructions start
 
-    Adding virual hosts
+        Adding http based virtual host, by default apache listens to port 80 for http based connections
+    
+        * $ cd /etc/apache2/sites-available/
+    
+        * $ sudo nano example.com.conf
 
-    $ cd /etc/apache2/sites-available/
-    $ sudo nano default-ssl.conf
-    $ sudo nano 000-default.conf
+            Add the below text 
+            #--------------------------------------------
+            # example.com
+            <VirtualHost *:80>
 
-    $ sudo a2ensite default-ssl.conf
+                ServerAdmin admin@example.com
+                ServerName  example.com
+                ServerAlias www.example.com
+                DocumentRoot /var/www/html/example-project/public
+
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+                <Directory /var/www/html>
+                    Options Indexes FollowSymLinks MultiViews
+                    AllowOverride All
+                    Order allow,deny
+                    allow from all
+                </Directory>
+
+            </VirtualHost>
+            #--------------------------------------------
+
+        Press `Ctrl + x`
+        Press `Shift + y`
+        And then Press Enter
+
+        Important****
+        DocumentRoot /var/www/html/example-project/public  -- this line should point to your project root folder, from where your application will be started
+
+        Next enable your virtual host with below command, you should be in folder '/etc/apache2/sites-available/'
+
+        * $ sudo a2ensite example.com.conf
+        * $ sudo systemctl reload apache2
+
+        Visit http://example.com to check whether your virtual host is working or not
+
+        **********************************************************  HTTP **************  instructions end
+
+        -----------------------------------------------------------------------------------------------------------------------------------------
+
+        Step 2  ***********  HTTPS ************** instructions start
+
+        Adding https based virtual host, by default apache listens to port 443 for https based connections
+
+        * $ cd /etc/apache2/sites-available/
+    
+        Note: 
+        1. For https you need ssl certificates.
+        2. The ssl file paths are taken, assuming you have followed the mentioned method to generate ssl certificates
+
+        * $ sudo nano example.secure.conf
+
+            Add the virtual host conf text 
+            #--------------------------------------------
+            #example.secure.com
+
+            <VirtualHost *:443>
+
+                    ServerAdmin example.secure.com  
+                    ServerName  example.secure.com
+                    ServerAlias www.example.secure.com
+                    DocumentRoot /var/www/html/example-secure-project/public
+
+                    ErrorLog ${APACHE_LOG_DIR}/error.log
+                    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+                    SSLEngine on
+                    SSLCertificateFile /etc/apache2/ssl/apache.crt
+                    SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+
+                    <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                            SSLOptions +StdEnvVars
+                    </FilesMatch>
+
+
+                    <Directory /var/www/html>
+                            Options Indexes FollowSymLinks MultiViews
+                            AllowOverride All
+                            Order allow,deny
+                            allow from all
+                    </Directory>
+
+            </VirtualHost>
+            #--------------------------------------------
+
+        Important****
+        DocumentRoot /var/www/html/example-project/public  -- this line should point to your project root folder, from where your application will be started
+
+        Next enable your virtual host with below command, you should be in folder '/etc/apache2/sites-available/'
+
+        * $ sudo a2ensite example.secure.com.conf
+        * $ sudo systemctl reload apache2
+
+        Visit https://example.secure.com to check whether your virtual host is working or not
+
+        Note:
+
+        If everything goes well,
+        You will get a error like `Your connection is not private` clik `Advanced` and then click `Proceed to example.secure.com (unsafe)`
+
+        **********************************************************  HTTPS **************  instructions end
+
+    HTTP -- Instead of creating seperate conf files for each domain, you can add all http virtual hosts in one file i.e., 000-default.conf
+    Simply copy the http virualhost conf mentiond above 
+
+    Open 000-default.conf file
+    $ sudo nano /etc/apache2/sites-available/000-default.conf
+    
+    And paste the copied copied http virtualhost conf at the end, save and exit
+
     $ sudo a2ensite 000-default.conf
 
     $ sudo systemctl reload apache2
+
+    HTTPS -- Instead of creating seperate conf files for each domain, you can add all https virtual hosts in one file i.e., default-ssl.conf
+    Simply copy the https virualhost conf mentiond above 
+
+    Open default-ssl.conf file
+    $ sudo nano /etc/apache2/sites-available/default-ssl.conf
+    
+    And paste the copied copied https virtualhost conf at the end, save and exit
+
+    $ sudo a2ensite default-ssl.conf
+
+    $ sudo systemctl reload apache2
+
+    NOTE:
+
+    Important*****************   
+    
+    After you change any vhost conf file, you need to enable it again, and reload apache
