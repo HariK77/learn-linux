@@ -34,7 +34,7 @@ Laravel:
 
 	laravel auth
 		$ composer require laravel/ui
-		$ php artisan ui --auth bootstrap
+		$ php artisan ui bootstrap --auth
 
 	Migrate migration tables:
 		$ php artisan migrate
@@ -92,6 +92,46 @@ Laravel:
 
 	Making a ploicy
 		$ php artisan make:policy CategoryPolicy -m Category
+
+	Running a specific test
+		$ php artisan test --filter LoginTest
+
+	To create a custom artisan command
+		$ php artisan make:command SendDocLinkToUsers
+
+	To run a custom command
+		$ php artisan command:name
+
+	To run all tests
+		$ php artisan test
+
+		$ ./vendor/bin/phpunit
+
+	To generate a Test
+		$ php artisan make:test BasicTest
+		$ php artisan make:test BasicTest --unit
+
+	To drop tables, re run migration and also seed
+		$ php artisan migrate:fresh --seed
+
+	To create resource controller, form request, migration, policy, repository and seeder
+		$ php artisan make:model Test -a
+
+		$ php artisan make:model Employee -mfs
+
+	To list queues
+		$ php artisan queue:list
+
+	To run queued jobs
+		$ php artisan queue:listen
+		$ php artisan queue:work
+
+	To run seeders which are in different location
+		$ php artisan db:seed --class=Database\\Seeders\\Oneshot\\AddCommissionToTypePriceRangeValues
+
+	To list scheduled commands
+		$ php artisan schedule:list
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 Codeigniter 4

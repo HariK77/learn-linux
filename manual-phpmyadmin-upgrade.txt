@@ -1,0 +1,52 @@
+// Manually upgrading phpmyadmin
+Firstly, make sure to delete the backup directory if it exists.
+
+$ sudo rm -rf /usr/share/phpmyadmin.bak
+Back up your current phpMyAdmin folder by renaming it.
+
+$ sudo mv /usr/share/phpmyadmin/ /usr/share/phpmyadmin.bak
+Create a new phpMyAdmin folder
+
+$ sudo mkdir /usr/share/phpmyadmin/
+CD to directory
+
+cd /usr/share/phpmyadmin/
+
+DOwnload latest version
+
+$ sudo wget https://files.phpmyadmin.net/phpMyAdmin/5.1.3/phpMyAdmin-5.1.3-all-languages.tar.gz
+
+$ sudo tar xzf phpMyAdmin-5.1.3-all-languages.tar.gz
+
+$ ls
+
+$ sudo mv phpMyAdmin-5.1.3-all-languages/* /usr/share/phpmyadmin
+
+$cfg[‘TempDir’] (./tmp/) is not accessible
+
+$ sudo mkdir /usr/share/phpmyadmin/tmp && $ sudo chmod 777 /usr/share/phpmyadmin/tmp
+
+blowfish_secret
+
+
+$ sudo nano /usr/share/phpmyadmin/libraries/vendor_config.php
+Press CTRL + W and search for CONFIG_DIR
+
+Change line to
+
+/usr/share/phpmyadmin/libraries/vendor_config.php
+define('CONFIG_DIR', '/etc/phpmyadmin/');
+
+
+$ sudo rm /usr/share/phpmyadmin/phpMyAdmin-5.1.3-all-languages.tar.gz
+
+$ sudo rm /usr/share/phpmyadmin/phpMyAdmin-5.1.3-all-languages
+
+$ sudo rm -rf /usr/share/phpmyadmin.bak
+
+
+Mysql error : su: warning: cannot change directory to /nonexistent: No such file or directory
+
+$ sudo service mysql stop
+$ sudo usermod -d /var/lib/mysql/ mysql
+$ sudo service mysql start

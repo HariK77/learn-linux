@@ -1,3 +1,24 @@
 Importing db from command line:
 
     $ mariadb -u root -p pandora < pandora.sql
+
+
+: 1648532725:0;mysqldump -u root eurecab_local | mysql -u root -p eurecab_local_testing
+: 1648532755:0;mysqldump -u maxx eurecab_local | mysql -u root -p eurecab_local_testing
+: 1648532785:0;sudo mysqldump -u root -p eurecab_local | mysql -u root -p eurecab_local_testing
+: 1648532812:0;mysqldump -u maxx -p eurecab_local | mysql -u root -p eurecab_local_testing
+: 1648532994:0;mysql -u root -p
+: 1648533044:0;sudo mariadb -u root -p
+: 1648533119:0;mysqldump -u root -p eurecab_local | mysql -u root -p testing_eurecab_local 
+: 1648533135:0;sudo mysqldump -u root -p eurecab_local | mysql -u root -p testing_eurecab_local 
+: 1648533152:0;sudo mysqldump -u root -p eurecab_local | mariadb -u root -p testing_eurecab_local 
+: 1648533208:0;sudo mysqldump -u maxx -p eurecab_local | mariadb -u maxx -p testing_eurecab_local 
+: 1648533269:0;ps
+: 1648533439:0;mysqldump -u maxx -p eurecab_local | mariadb -u maxx -p testing_eurecab_local 
+: 1648533559:0;cd ~/
+: 1648533562:0;cd Desktop
+: 1648533579:0;mysqldump -u maxx -p eurecab_local > eurecab_local.sql
+: 1648533865:0;mysqladmin -u maxx -p create testing_eurecab_local
+: 1648533882:0;mysqladmin -u maxx -p drop testing_eurecab_local
+: 1648533920:0;mysqladmin -u maxx -p create testing_eurecab_local
+: 1648533938:0;mysql -u maxx -p testing_eurecab_local < eurecab_local.sql
