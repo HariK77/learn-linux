@@ -11,6 +11,8 @@ Disabling the current PHP version in apache2
 
     Disabling current PHP apache2
         $ sudo a2dismod php7.4
+        $ sudo a2dismod mpm_event  -- need to test
+        $ sudo a2dismod mpm_prefork -- need to test
 
     Reloading Apache2 after disabling
         $ sudo systemctl restart apache2

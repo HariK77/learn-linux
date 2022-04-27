@@ -26,3 +26,9 @@ Git set credentials:
     $ git config --global user.email "hari@gmail.com"
     $ git config --global user.name "Hari"
     $ git config --global user.password "kr"
+
+git restore --staged app/Controllers/PublicController.php
+
+git config credential.helper store
+
+git config --unset credential.helper

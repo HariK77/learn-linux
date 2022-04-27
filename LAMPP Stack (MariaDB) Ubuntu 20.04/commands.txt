@@ -6,6 +6,10 @@
  * If you have done some setup already or facing some issue, go to the respective section where you are having issue.
  * copy only the part after $ sign in every command.
  * Other commands are to check respective status of the respective installation.
+ * Helpful Commands:
+ *  1. $ ls -al  (to list all the files in directory
+ *  2. $ pwd (to know in which directoty you are in currently)
+ *  3. $ cat filename.txt (change filename.txt with the file u want) (To output the contents of the file)
  */
 
 //////////////////////////////////////////////////////////////////////
@@ -112,6 +116,11 @@ Giving permissions to logged in system user(this command helps you give write pe
         $ sudo chown www-data:www-data -R (need to test)
         $ sudo chown www-data:www-data /var/www/html/ -R (need to test)
         $ sudo chown -R $USER:$USER /var/www/html (need to test)
+        Give permission for the current user
+        $ sudo chown -R $(whoami):$(whoami) /var/www/mytest1.com/public_html
+
+        Setting the default permissions for var/www folder
+        $ sudo chmod -R 755 /var/www
 
 /////////////////////////////////////////////////////////////////////
 Installing mariadb and helpful commands:
