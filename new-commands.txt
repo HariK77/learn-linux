@@ -57,6 +57,7 @@ supervisorctl status | awk '{print $1, $2}'
 
 sudo supervisorctl status | awk '{print $1, $2}'
 
+sudo systemctl disable supervisor 
 
 ssh-keygen
 
