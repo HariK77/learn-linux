@@ -207,9 +207,13 @@ Nest JS Setup
 
     starting app
     	$ npm run start (or) $ nest start (to be run root folder of project)
+		$ npm run start:dev (for live changes)
 
     Creating module
     	$ nest g module users
+
+	Creating Service
+		$ nest g service prisma --no-spec
 
     Installing package
     	$ npm install mysql typeorm @nestjs/typeorm
@@ -219,6 +223,9 @@ Nest JS Setup
 
     Creating controller
     	$ nest g controller users
+
+	Validation Pipe
+		$ npm i --save class-validator class-transformer
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 React Installation

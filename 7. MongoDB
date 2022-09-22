@@ -46,6 +46,8 @@ Enabling Authenticatoin
         ]
     })
 
+Installing php mongo extension
+    $ sudo apt-get install php-mongo
 
 uninstalling
     $ sudo service mongod stop

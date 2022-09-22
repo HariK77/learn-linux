@@ -1,0 +1,70 @@
+Work In Progress:
+
+: 1652862751:0;composer create-project laravel/laravel lara-sail
+: 1652862766:0;cd lara-sail
+: 1652862769:0;code .
+: 1652862791:0;composer require laravel/sail --dev
+: 1652862800:0;php artisan sail:install
+: 1652862853:0;./vendor/bin/sail up
+: 1652862982:0;sudo apt install docker.io
+: 1652863070:0;sudo systemctl start docker.service
+: 1652863077:0;sudo docker version
+: 1652863115:0;./vendor/bin/sail up
+: 1652863262:0;./vendor/bin/sail up -d
+: 1652863274:0;sudo -s
+: 1652868476:0;sudo apt-get remove docker.io
+: 1652868507:0;sudo apt-get remove docker docker-engine docker.io containerd runc
+: 1652868836:0;sudo apt-get install \\
+    ca-certificates \\
+    curl \\
+    gnupg \\
+    lsb-release
+: 1652868848:0;curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+: 1652868859:0;echo \\
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \\
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+: 1652868866:0;sudo apt-get update
+: 1652868877:0;sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+: 1652868944:0;sudo docker run hello-world
+: 1652868992:0;./vendor/bin/sail up
+: 1652869028:0;alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+: 1652869034:0;sail up
+: 1652869052:0;sail php --version
+: 1652869110:0;docker run hello-world
+: 1652869118:0;sudo groupadd docker
+: 1652869124:0;sudo usermod -aG docker $USER
+: 1652869130:0;docker run hello-world
+: 1652869154:0;sail up
+: 1652869235:0;docker version
+: 1652869259:0;docker info
+: 1652869293:0;sail up
+: 1652869301:0;alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+: 1652869304:0;sail up
+: 1652869352:0;sudo apt-get install docker-compose
+: 1652869373:0;sail up
+: 1652869871:0;cd Desktop/test-p/lara-sail
+: 1652869885:0;./vendor/bin/sail up
+: 1652870482:0;sudo apt-get install spt-utils
+: 1652870487:0;sudo apt-get install apt-utils
+: 1652870508:0;./vendor/bin/sail up
+: 1652870903:0;docker container ls
+: 1652870919:0;docker images
+: 1652870938:0;dicker stats
+: 1652870942:0;docker stats
+: 1652870957:0;sudo docker network ls
+: 1652871056:0;sudo docker-compose stop
+: 1652871299:0;docker container ls
+: 1652871305:0;docker ps
+: 1652881289:0;./vendor/bin/sail up
+: 1652881511:0;docker run -d -p 8080:80 docker/getting-started
+: 1652881523:0;cd ../
+: 1652881529:0;sudo docker-compose stop
+: 1652881538:0;docker container ls
+: 1652881561:0;docker ps
+: 1652881586:0;docker run hello-world
+: 1652881599:0;docker-compose stop
+: 1652881608:0;cd lara-sail
+: 1652881610:0;docker-compose stop
+: 1652881650:0;./vendor/bin/sail up -d -p 8080:80
+: 1652881700:0;docker-compose stop
+: 1652881706:0;docker ps

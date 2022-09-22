@@ -40,11 +40,14 @@ Installing Node:
         $ nvm list
 
         Switch between node versions
-        $ nvm use v14.10.0
+        $ nvm alias default v14.10.0
+        $ nvm use default
 
-        Uninstall node js
+        Uninstall specific node js version
         $ nvm uninstall v16.15.0
 
+        To use Latest version as default
+        $ nvm alias default node
 
 Check Node and NPM versions
     $ node --version
