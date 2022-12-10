@@ -1,0 +1,170 @@
+# Normal Installations:
+  	$ sudo apt-get install git
+  	$ sudo apt-get install curl
+  	$ sudo apt-get install unzip
+  	$ sudo apt-get install chromium-browser
+
+	To install cascadia font
+		$ sudo apt-get -y install fonts-cascadia-code
+
+# Crontab:
+	List cron jobs
+		$ crontab -l
+
+	Edit crontab
+		$ crontab -e
+
+# Supervisor:
+
+  	$ sudo apt-get install supervisor
+  	$ sudo service supervisor status
+
+	Check supervisor installation path
+  	$ cd /etc/supervisor/conf.d
+
+  Editing files
+  	$ sudo nano test_watch.conf
+  	$ sudo nano horizon_watch.conf
+  	$ sudo nano worker_queue.conf
+
+  If we edit we need to run 
+  	$ sudo supervisorctl reread
+  	$ sudo supervisorctl update
+
+  Start a watcher:
+  	$ sudo supervisorctl start test_watch:*
+
+  List processes running:
+  	$ sudo supervisorctl status | awk '{print $1, $2}'
+  	$ sudo supervisorctl status
+  	$ supervisorctl status | awk '{print $1, $2}'
+  	$ sudo supervisorctl status | awk '{print $1, $2}'
+  	$ sudo systemctl disable supervisor 
+
+# SSH Key
+  	Generate key:
+  		$ ssh-keygen
+  	Enter password and remember
+
+  	Default localtion of ssh keys
+  		$ cat ~/.ssh/id_rsa.pub
+
+
+# To see apt sources list:
+  	$ cd /etc/apt/sources.list.d/
+
+
+To give run access to script file
+  	$ sudo chmod +x start_nginx_server.sh 
+
+# Create a file and append text
+  	$ echo "# wordle-word-guesser" >> README.md
+
+
+# Set default python version
+  	$ sudo update-alternatives  --set python /usr/bin/python3.8
+
+# Change graphics hardware
+  	$ glxinfo -B
+  	$ sudo lshw -c video
+  	$ lspci -nn | grep -E 'VGA|Display'
+  	$ prime-select query
+  	$ sudo prime-select intel
+  	$ prime-select query
+
+
+# Installing neofetch
+  	$ sudo apt install neofetch
+  	$ neofetch
+  	$ neofetch -s
+
+# vlc kill
+  	$ ps aux | grep vlc
+  	$ pkill vlc
+  	$ pkill -9 vlc
+
+# Mysql
+	Altering existing users password auth type
+	-- for MySQL
+		ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+
+	-- for MariaDB
+		ALTER USER 'root'@'localhost' IDENTIFIED VIA mysql_native_password USING PASSWORD('root');
+
+	Copy tables from one db to another db, assuming another db is already crated
+		mysqldump -u maxx -p eurecab_local | mariadb -u maxx -p testing_eurecab_local
+
+	Dump db into sql file
+
+		mysqldump -u maxx -p eurecab_local > eurecab_local.sql
+
+	Creat db from cmd
+		mysqladmin -u maxx -p create testing_eurecab_local
+
+	Insert sql file data into db
+		mysql -u maxx -p testing_eurecab_local < eurecab_local.sql
+		
+	Drop db
+		mysqladmin -u maxx -p drop testing_eurecab_local
+
+	Dump all databses
+		mysqldump --all-databases > all_databases.sql
+
+
+	Mysql 8 changing password auth and constaints
+		SHOW VARIABLES LIKE 'validate_password%';
+		SET GLOBAL validate_password.policy=LOW;
+		SET GLOBAL validate_password.check_user_name=OFF;
+		SET GLOBAL validate_password.length=4;
+		SET GLOBAL validate_password.mixed_case_count=0;
+		SET GLOBAL validate_password.number_count=0;
+		SET GLOBAL validate_password.special_char_count=0;
+
+	To Drop user
+		DROP user
+		GRANT USAGE ON *.* TO 'username'@'localhost';
+		DROP USER 'username'@'localhost';
+
+
+# Increase watchers
+  	$ sudo gedit /etc/sysctl.conf
+
+  	add at the end
+  		fs.inotify.max_user_watches=524288
+
+  	$ sudo sysctl -p
+
+Install MKVToolnix
+
+	Add Keyring
+		$ sudo wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg
+		$ sudo apt-get update
+
+	Add apt source list
+  		$ sudo nano /etc/apt/sources.list.d/mkvtoolnix.download.list
+
+		Add the lines below to the file "mkvtoolnix.download.list"
+
+		deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ jammy main
+		deb-src [signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ jammy main
+
+	Update apt repository & install
+		$ sudo apt-get update
+		$ sudo apt install mkvtoolnix mkvtoolnix-gui
+
+To connect to ssh using pem
+  	$ sudo chmod -R 400 test.pem
+  	$ ssh -i "test.pem" ubuntu@ec2-54-789-172-999.compute-1.amazonaws.com
+
+
+Universal Android Bebloater
+	Source Url
+		https://github.com/0x192/universal-android-debloater
+	Archieve download 
+		https://github.com/0x192/universal-android-debloater/releases
+	
+	Installing required android tools
+		$ sudo apt install android-sdk-platform-tools
+
+	Giving permissions
+		$ sudo chmod +x uad_gui-linux

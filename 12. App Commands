@@ -1,0 +1,15 @@
+
+npx react-native init AwesomeProject --version 1.00.0
+
+sudo apt-get install default-jre
+sudo apt-get install default-jdk
+
+sudo apt-get install android-tools-adb android-tools-fastboot -y
+
+npx react-native run-android
+
+npx react-native log-android
+
+npx react-native start
+
+./gradlew assembleRelease

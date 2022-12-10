@@ -20,7 +20,7 @@ Installing Node:
 
     Method: 3
 
-        $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+        $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 
         Load nvm into the environment
         $ source ~/.zshrc -- If you are using zsh
@@ -28,7 +28,7 @@ Installing Node:
         $ source ~/.bashrc  -- If you are using bash
 
         List all available node js versions on remote
-        $ nvm list-verbose
+        $ nvm ls-remote --lts
 
         Install Node js by spscifying the full version number
         $ nvm install v16.15.0
@@ -52,3 +52,16 @@ Installing Node:
 Check Node and NPM versions
     $ node --version
     $ npm --version
+
+Uninstall Node:
+    $ apt-get purge nodejs
+    $ apt-get purge npm
+    $ apt-get purge nodejs*
+
+Some htlpfule nvm commands
+    https://gist.github.com/chranderson/b0a02781c232f170db634b40c97ff455
+
+Npm commands
+    $ npm cache clean --force
+    $ npm install --legacy-peer-deps
+    $ npm config set legacy-peer-deps true

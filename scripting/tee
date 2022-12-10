@@ -1,0 +1,23 @@
+Write the output grep command into txt file
+
+    $ dpkg -l | grep php | tee packages.txt
+
+Appending to the end of curren text file
+    $ dpkg -l | grep php | tee -a packages.txt
+
+Writing to multiple files
+    $ dpkg -l | grep php | tee packages.txt packages2.txt
+
+Writing text to file
+    $ echo "<?php echo phpinfo(); ?>" | tee info.php
+
+Skipping terminal output
+    $ echo "<?php echo phpinfo(); ?>" | tee info.php > /dev/null
+
+Tee to log files:
+    #!bin/bash
+    LOGFILE=/Desktop/scripts/log-$(date +%d%m%Y)
+    echo "Hello World" | tee -a $LOGFILE
+
+Writing bash output to a log file
+    $ ./testbash.sh | tee -a testbash.log

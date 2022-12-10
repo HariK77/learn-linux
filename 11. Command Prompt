@@ -1,0 +1,24 @@
+Source Url
+
+https://www.digitalcitizen.life/command-prompt-how-use-basic-commands
+
+
+1. TO go to root directory of current drive
+
+cd \
+
+2. To change drives
+
+cd /d D:\ or d:  (no need of cd)
+cd /d C:\ or c:  (no need of cd)
+
+3. To go to other directories with absolute path
+
+cd C:\xampp\htdocs
+
+4. To see the directory list
+
+ dir
+
+5. 
+
