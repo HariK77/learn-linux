@@ -1,0 +1,29 @@
+To list all installed packages
+
+    $ dpkg -l
+
+To install a .deb packages
+    $ dpkg -i vlc.deb
+
+To uninstall a .deb packages
+    $ dpkg -r vlc
+
+To remove package and conf
+    $ dpkg -p vlc
+
+To check pac is installed
+    $ dpkg -s vlc
+
+To list localtion of the packages
+    $ dpkg -L vlc
+
+To search for installed packages
+    $ dpkg -l apache2
+    $ dpkg -l phpmyadmin
+
+Listing all packages for specific program
+
+    $ dpkg -l | grep php8.1
+
+TO know about the remaining commands
+    $ dpkg –help

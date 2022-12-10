@@ -1,7 +1,14 @@
-ffmpeg installation:
+Essential Ripping Softwares:
+    VLC
+    Handbrake
+    MakeMKV
+    MKV ToolNIX
 
+Installationa:
+	$ sudo apt-get install vlc
     $ sudo apt-get install ffmpeg
-    $ ffmpeg
+	$ sudo apt install handbrake
+	$ sudo apt-get install imagemagick
 
 To get video and audio details
     $ ffprobe up.2009.2160p.uhd.bluray.x265-aviator.mkv 
@@ -42,30 +49,23 @@ Removing sound from video
     $ ffmpeg -i example.mkv -c copy -an example-nosound.mkv
 
 Audio:
+    Converting wav to falc
+        $ ffmpeg -i .\Ad.wav -f flac Ad.flac
 
-Converting wav to falc
-    $ ffmpeg -i .\Ad.wav -f flac Ad.flac
+    Converting 5.1 audio in stereo
 
-Converting 5.1 audio in stereo
+        $ ffmpeg -i 1.wav -c pcm_s16le -ac 2 "Audio 1 (-ac 2).wav"
+        $ ffmpeg -i 1.wav -c pcm_s16le -af "pan=stereo|FL < 1.0*FL + 0.707*FC + 0.707*BL|FR < 1.0*FR + 0.707*FC + 0.707*BR" "Audio 2 (ATSC).wav"
+        $ ffmpeg -i "1.wav" -c pcm_s16le -af "pan=stereo|FL=FC+0.30*FL+0.30*BL|FR=FC+0.30*FR+0.30*BR" "Audio 3 (Nightmode Dialogue Downmix).wav"
+        $ ffmpeg -i "1.wav" -c pcm_s16le -vol 425 -af "pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE" "Audio 4 (Dave750 Downmix).wav"
 
-    $ ffmpeg -i 1.wav -c pcm_s16le -ac 2 "Audio 1 (-ac 2).wav"
-    $ ffmpeg -i 1.wav -c pcm_s16le -af "pan=stereo|FL < 1.0*FL + 0.707*FC + 0.707*BL|FR < 1.0*FR + 0.707*FC + 0.707*BR" "Audio 2 (ATSC).wav"
-    $ ffmpeg -i "1.wav" -c pcm_s16le -af "pan=stereo|FL=FC+0.30*FL+0.30*BL|FR=FC+0.30*FR+0.30*BR" "Audio 3 (Nightmode Dialogue Downmix).wav"
-    $ ffmpeg -i "1.wav" -c pcm_s16le -vol 425 -af "pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE" "Audio 4 (Dave750 Downmix).wav"
+    Extracting audio from video
 
+        $ ffmpeg -i '.\movie.mkv' -map 0:1 -c:a copy 5.1_DTS_Telugu.wav
+        $ ffmpeg.exe -ss 00:00:10  -t 5 -i "video.mp4" -ss 0:00:01 -t 5 -i "music.m4a" -map 0:v:0 -map 1:a:0 -y out.mp4 -- don't know
 
-Extracting audio from video
-
-    $ ffmpeg -i '.\movie.mkv' -map 0:1 -c:a copy 5.1_DTS_Telugu.wav
-
-
-
-    $ ffmpeg.exe -ss 00:00:10  -t 5 -i "video.mp4" -ss 0:00:01 -t 5 -i "music.m4a" -map 0:v:0 -map 1:a:0 -y out.mp4 -- don't know
-
-
-
-Essential Ripping Softwares:
-
-Handbrake
-MakeMKV
-MKV ToolNIX
+Conversion with imagemagick
+    To convert images resolution
+        $ convert high_resloution.jpg -quality 50% low_resolution.jpg
+    To convert image size
+        $ mogrify -quality 50 image_path.jpg

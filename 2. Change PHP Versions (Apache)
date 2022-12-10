@@ -30,3 +30,28 @@ Changing php.ini file
 
     $ sudo gedit /etc/php/7.4/apache2/php.ini 
     $ service apache2 restart
+
+# PHP installable packages
+    $ sudo apt-get install php8.1 libapache2-mod-php8.1 php8.1-mysql php8.1-common php8.1-cli php8.1-readline php8.1-intl php8.1-curl php8.1-mbstring php8.1-xml php8.1-zip php8.1-redis php8.1-mongo
+
+    $ sudo apt-get install php php-fpm libapache2-mod-php php-mysql php-common php-cli php-readline php-intl php-curl php-mbstring php-xml php-zip php-redis php-gd php-bcmath
+
+    $ sudo apt-get install \
+                php7.4 \
+                libapache2-mod-php7.4 \
+                php7.4-mysql \
+                php7.4-common \
+                php7.4-cli \
+                php7.4-common \
+                php7.4-json \
+                php7.4-opcache \
+                php7.4-readline \
+                php7.4-intl \
+                php7.4-curl \
+                php7.4-mbstring \
+                php7.4-xml \
+                php7.4-zip \
+                php7.4-redis \
+                php7.4-mongo \
+                php7.4-sqlite \
+                php7.4-redis \

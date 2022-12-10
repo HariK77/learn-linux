@@ -1,0 +1,38 @@
+#!/bin/bash
+echo "Your current php version : "
+# php -v
+old_version=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+
+echo "Your current php version -- php${old_version}"
+# echo "${old_version}"
+# echo "Enter current php version : "
+# read old_version
+echo "Enter php version u want to change to: "
+read change_to_version
+
+
+# echo "Disabling old php version -- php${old_version}"
+# sudo a2dismod php${old_version}
+# echo "Restarting apache server"
+# sudo systemctl restart apache2
+# echo "Enabling new php version -- php${change_to_version}"
+# sudo a2enmod php${change_to_version}
+# echo "Restarting apache server"
+# sudo systemctl restart apache2
+# echo "Making changed php version to run system wide"
+# sudo update-alternatives --set php /usr/bin/php${change_to_version}
+# echo "Restarting apache server"
+# sudo systemctl restart apache2
+
+# alias php.info='php -i'
+# alias php5.6='sudo a2dismod php7.0 && sudo a2dismod php7.1 && sudo a2dismod php7.2 && sudo a2dismod php7.3 && sudo a2dismod php7.4 && sudo a2enmod php5.6 && sudo update-alternatives --set php /usr/bin/php5.6 && sudo service apache2 restart'
+# alias php7.0='sudo a2dismod php5.6 && sudo a2dismod php7.1 && sudo a2dismod php7.2 && sudo a2dismod php7.3 && sudo a2dismod php7.4 && sudo a2enmod php7.0 && sudo update-alternatives --set php /usr/bin/php7.0 && sudo service apache2 restart'
+# alias php7.1='sudo a2dismod php5.6 && sudo a2dismod php7.0 && sudo a2dismod php7.2 && sudo a2dismod php7.3 && sudo a2dismod php7.4 && sudo a2enmod php7.1 && sudo update-alternatives --set php /usr/bin/php7.1 && sudo service apache2 restart'
+# alias php7.2='sudo a2dismod php5.6 && sudo a2dismod php7.0 && sudo a2dismod php7.1 && sudo a2dismod php7.3 && sudo a2dismod php7.4 && sudo a2enmod php7.2 && sudo update-alternatives --set php /usr/bin/php7.2 && sudo service apache2 restart'
+# alias php7.3='sudo a2dismod php5.6 && sudo a2dismod php7.0 && sudo a2dismod php7.1 && sudo a2dismod php7.2 && sudo a2dismod php7.4 && sudo a2enmod php7.3 && sudo update-alternatives --set php /usr/bin/php7.3 && sudo service apache2 restart'
+# alias php7.4='sudo a2dismod php5.6 && sudo a2dismod php7.0 && sudo a2dismod php7.1 && sudo a2dismod php7.2 && sudo a2dismod php7.3 && sudo a2enmod php7.4 && sudo update-alternatives --set php /usr/bin/php7.4 && sudo service apache2 restart'
+
+
+# sudo a2dismod mpm_event
+# sudo a2enmod php7.2
+# sudo systemctl restart apache2

@@ -127,10 +127,31 @@ Laravel:
 		$ php artisan queue:work
 
 	To run seeders which are in different location
-		$ php artisan db:seed --class=Database\\Seeders\\Oneshot\\AddCommissionToTypePriceRangeValues
+		$ php artisan db:seed --class=Database\\Seeders\\Oneshot\\TestSeeder
 
 	To list scheduled commands
 		$ php artisan schedule:list
+
+	To migrate to a specific db
+		$ php artisan migrate --database=mysql_testing
+
+	To create a unit test file
+		$ php artisan make:test Auth/UserRegistrationTest --unit
+
+	To create feature test
+		$ php artisan make:test TestFeature
+
+	To run test
+		$ php artisan test
+	
+	Providing env parameter to test command
+		$ php artisan test --env=testing
+
+	To autoload manual file classes
+		$ composer dump-autoload
+
+	Create mailable class and markdown
+		$   php artisan make:mail SendNewsLetter --markdown=email.send_news_letter
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -180,6 +201,9 @@ TypeScript Setup
 		
 	Init typescript config for local project
 		$ tsc --init
+	
+	Watch for changes and compile
+		$ tsc -w
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 Angular Setup
